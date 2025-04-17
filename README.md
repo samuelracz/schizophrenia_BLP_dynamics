@@ -3,8 +3,6 @@
 This folder contains the complete analysis pipeline for the aformentioned project. The scripts reproduce the main analysis outcomes and figures published in the article. Specifically,
 
 - 'script_01_analyze_BLP_ec/eo.m' loads *pre-processed* EEG data (from eyes-closed/eyes-open conditions, respectively) and conducts the sliding window BLP          analysis, utilizing IRASA for decomposing the power spectrum into fractal and oscillatory components. Outputs (per participant) are saved into results_BLP_ec/ as Matlab workspaces.
-- 'script_02_statistics_IRASA_bimodal.m' conducts all statistical analyses presented in the article.
-- 'script_03_plot_results.m' re-creates all the figures in the article and its supplementary material.
 
 Additionally, 'script_00_preproc_ec/eo_mara.m' provides the means to reproduce the results from raw EEG data. Raw EEG recordings will be made available at Zenodo.org upon publication. The list of included participants and the specific position of the 30s of EEG data selected for analysis is contained in the matlab workspace miscellaneous/fnames_times_ec.mat.
 
