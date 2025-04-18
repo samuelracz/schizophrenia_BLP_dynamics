@@ -2,7 +2,7 @@
 
 This folder contains the complete analysis pipeline for the aformentioned project. The scripts reproduce the main analysis outcomes and figures published in the manuscript. Pipeline is as follows:
 
-- Run analysis scripts first (<script_01_analyze_BLP_ec.m, script_01_analyze_BLP_eo.m, script_01_analyze_BLP_ec_surrogate.m, script_01_analyze_BLP_eo_surrogate.m>)
+- Run analysis scripts first (_script_01_analyze_BLP_ec.m_, _script_01_analyze_BLP_eo.m_, _script_01_analyze_BLP_ec_surrogate.m_, _script_01_analyze_BLP_eo_surrogate.m_)
 
 - 
 
