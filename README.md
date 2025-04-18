@@ -2,7 +2,8 @@
 
 This folder contains the complete analysis pipeline for the aformentioned project. The scripts reproduce the main analysis outcomes and figures published in the manuscript. Pipeline is as follows:
 
-- Run analysis scripts first (_script_01_analyze_BLP_ec.m_, _script_01_analyze_BLP_eo.m_, _script_01_analyze_BLP_ec_surrogate.m_, _script_01_analyze_BLP_eo_surrogate.m_)
+- Run analysis scripts first (_script_01_analyze_BLP_ec.m_, _script_01_analyze_BLP_eo.m_, _script_01_analyze_BLP_ec_surrogate.m_, _script_01_analyze_BLP_eo_surrogate.m_). These will generate matlab workspaces for every participant separately in folders 'results_BLP_ec', 'results_BLP_eo', 'results_surrogate_ec' and 'results_surrogate_eo', storing all neural indices involved in subsequent statistical evaluation.
+- - NOTE
 
 - 
 
