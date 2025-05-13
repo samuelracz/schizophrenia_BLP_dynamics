@@ -102,6 +102,6 @@ xlabel('Dorsal attention network \sigma(\beta-BLP^{EC}_{\it{mixd}})', 'FontSize'
 ylabel('PANSS - Total','FontSize',28,'visible','on')
 title('PANSS-SUM \sigma(\beta-BLP^{EC}_{\it{mixd}}) in DA','FontSize',28)
 
-exportgraphics(fc,'fig_corr_panss_DA.png','resolution',300)
+exportgraphics(fc,'fig_corr_panss_res_all.png','resolution',300)
 close(fc)
 
