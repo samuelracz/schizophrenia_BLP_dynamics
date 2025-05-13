@@ -2,31 +2,27 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % This script evaluates if CPZ equivalent dose is correlated to BLP indices
 % obtained in the SZ group. In turn, this script should be run after all
-% other statistical evaluations are completed and the workspaces
-% ws_results_BLP_ec.mat, ws_results_BLP_eo.mat and ws_results_BLP_vs.mat
-% exist.
+% other statistical evaluations are completed and the workspace
+% ws_results_BLP_ec.mat is saved.
 %
 % note that that is stored such that the first 30 subjects (sch_002 - 
 % sch_050) are SZ patients, the remaining 31 subjects (sch_101 - sch_333)
 % are healthy controls.
 %
-% NOTE: this script utilizes output matlab workspaces that must be
-% generated first using script_01_analyze_BLP_ec_surrogate.m and
-% script_01_analyze_BLP_eo_surrogate.m
+% NOTE: this script utilizes output matlab workspace that must be
+% generated first using script_01_analyze_BLP_ec_surrogate.m
 %
-% This script evaluates both EYES CLOSED and EYES OPEN data
+% This script evaluates EYES CLOSED data
 % 
 % Author: F. Samuel Racz, The University of Texas at Austin
 % email: fsr324@austin.utexas.edu
-% last modified: 04/18/2025
+% last modified: 05/13/2025
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 addpath(genpath('functions'))
 addpath('miscellaneous')
 
 load('ws_results_BLP_ec.mat')
-load('ws_results_BLP_eo.mat')
-load('ws_results_BLP_vs.mat')
 
 load('ws_55ch_montage.mat')
 load('ws_55ch_chanlocs.mat')
@@ -98,10 +94,8 @@ chlab = struct_sz_ec.chlab;
 rsnlab = struct_sz_rsn_ec.rsnlab;
 
 corr_CPZ_blp_rsn_ec = func_corr_RSN_CPZ(table_sign_rsn_blp_ec, table_conf);
-corr_CPZ_blp_rsn_vs = func_corr_RSN_CPZ(table_sign_rsn_blp_vs, table_conf);
 
 corr_CPZ_blp_rsn_ec = corr_CPZ_blp_rsn_ec(contains(corr_CPZ_blp_rsn_ec.rsn,'Global'),:);
-corr_CPZ_blp_rsn_vs = corr_CPZ_blp_rsn_vs(contains(corr_CPZ_blp_rsn_vs.rsn,'Global'),:);
 
 %% compute correlations between CPZ and PANSS
 
@@ -114,10 +108,10 @@ corr_CPZ_PANSS_all = cat(1,corr_CPZ_PANSS_GEN,cat(1,corr_CPZ_PANSS_NEG,cat(1,cor
 
 %% save results
 
-save('miscellaneous/ws_results_CPZ_corr.mat','corr_CPZ_blp_rsn_ec','corr_CPZ_blp_rsn_vs','corr_CPZ_PANSS_all');
+save('miscellaneous/ws_results_CPZ_corr.mat','corr_CPZ_blp_rsn_ec','corr_CPZ_PANSS_all');
 
 %% plot results
 
 f = func_plot_CPZ_PANSS_corr(corr_CPZ_PANSS_all);
-exportgraphics(f,'figures/fig_corr_cpz_panss_all.png','resolution',400)
+% exportgraphics(f,'figures/fig_corr_cpz_panss_all.png','resolution',300)
 close(f)
