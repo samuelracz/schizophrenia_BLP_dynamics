@@ -17,7 +17,8 @@ output_table = table(cell(nr,1), cell(nr,1), zeros(nr,1),...
     cell(nr,1), zeros(nr,1), zeros(nr,1),...
     zeros(nr,1), zeros(nr,1),...
     cell(nr,1), cell(nr,1),...
-    'VariableNames', {'meas','rsn', 'rsnID', 'E_hc','E_sz','p','h','ttype','tstat','ES','p_FDR','h_FDR','v_hc','v_sz'});
+    zeros(nr,1), zeros(nr,1),...
+    'VariableNames', {'meas','rsn', 'rsnID', 'E_hc','E_sz','p','h','ttype','tstat','ES','p_FDR','h_FDR','v_hc','v_sz','vTest','vstat'});
 
 %% statistical tests
 
@@ -36,6 +37,7 @@ for br = 1:nr % iterate over RSNs
         ttype = 'ranksum';
         statvalue = s.zval;
         ES = abs(statvalue)/sqrt(length(v_hc)+length(v_sz));
+        [pv,sv] = vartestn([v_hc;v_sz],[zeros(length(v_hc),1); ones(length(v_sz),1)],'TestType','LeveneAbsolute','Display','off');
     else
         % parametric testing (two sample t-test)
         [h,p,~,s] = ttest2(v_hc, v_sz);
@@ -45,6 +47,7 @@ for br = 1:nr % iterate over RSNs
         statvalue = s.tstat;
         ES_tmp = meanEffectSize(v_hc,v_sz,'Effect','cohen');
         ES = abs(ES_tmp.Effect('CohensD'));
+        [~,pv,~,sv]=vartest2(v_hc,v_sz);
     end
 
     % store outcomes
@@ -62,6 +65,8 @@ for br = 1:nr % iterate over RSNs
     output_table.h_FDR(br) = 0;
     output_table.v_hc{br} = v_hc;
     output_table.v_sz{br} = v_sz;
+    output_table.vTest(br) = pv;
+    output_table.vstat(br) = sv.fstat;
 end
 
 % sorting outcomes in descending order or significance (1-p)
